@@ -266,13 +266,31 @@ def cars_predict(df):
     mpg_pred = model.predict(input_data)[0]
     st.success(f"예상 연비: **{mpg_pred:.2f} mpg** 🚘")
 
+###############추가 기능 (기말 프로젝트 연습용)#################
+
+def cars_random(df):
+    st.header("🚗 랜덤 자동차 정보")
+    if st.button("뽑기"):
+        car = df.sample(1).iloc[0]
+
+        st.success("랜덤 뽑기 결과!")
+
+        st.write(f"연비: {car['mpg']}")
+        st.write(f"마력: {car['hp']}")
+        st.write(f"무게: {car['weightlbs']}")
+        st.write(f"가속 시간: {car['time-to-60']}")
+        st.write(f"출시 연도: {car['year']}")
+        st.write(f"제조 지역: {car['continent']}")
+
+##########################################ㄸ#################
+
 def main():
     st.set_page_config(page_title="자동차 연비 대시보드", layout="wide")
     
     # --- 사이드바 메뉴 ---
     menu = st.sidebar.radio(
         "대시보드 메뉴",
-        ["홈", "탐색적 자료분석(EDA)", "연비 예측"]
+        ["홈", "탐색적 자료분석(EDA)", "연비 예측", "랜덤 차 뽑기"]
     )
 
     df = load_data()
@@ -288,6 +306,9 @@ def main():
     # --- 연비 예측 화면 ---
     elif menu == "연비 예측":
         cars_predict(df)
+
+    elif menu == "랜덤 차 뽑기":
+        cars_random(df)
 
 # 지금 이 파일 (Ex_ch11_cars.py) 직접 실행 시에만 main함수 실행
 if __name__ == "__main__":
