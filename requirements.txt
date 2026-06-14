@@ -4,3 +4,9 @@ matplotlib
 openpyxl
 plotly
 scikit-learn
+PyKakao
+konlpy
+selenium
+folium
+streamlit-folium
+geopy
